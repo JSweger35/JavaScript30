@@ -65,8 +65,16 @@
     if(!audio) return; //stop the function from running altogether
     audio.currentTime = 0 ; //rewind to the start
     audio.play();
-    console.log(key);
+    key.classList.add('playing');
+    
   });
+
+  function removeTransition(e){
+    if (e.propertyName !== 'transform') return; //skip it if not transform
+    this.classList.remove('playing');
+  }
+  const keys = document.querySelectorAll(".key");
+  keys.forEach(key => key.addEventListener("transitionend", removeTransition));
 </script>
 
 
